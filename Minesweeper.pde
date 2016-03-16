@@ -16,6 +16,7 @@ void setup ()
     
     //your code to declare and initialize buttons goes here
     buttons = new MSButton[20][20];
+    bombs = new ArrayList <MSButton>();
     for(int row = 0; row < NUM_ROWS; row++)
     {
         for(int col = 0; col < NUM_COLS; col++)
@@ -31,8 +32,21 @@ void setup ()
 public void setBombs()
 {
     //your code
-    int bombRow = (int)(Math.random()*NUM_ROWS);
-    int bombCol = (int)(Math.random()*NUM_COLS);
+    //3.Go to line 25 and write the `setBombs()` function. 
+    //   It should generate a random `row` and `col`umn number. Use the `contains()` 
+    //   function to check to see if  `buttons[row][col]` is already in `bombs`. If it isn't then `add` it
+    //3.Uncomment lines 97 and 98 so that cells with a mine turn red when clicked. 
+    //   Test out your program to make sure it has the number of mines you expect.
+    while(bombs.size() < 10)
+    {
+        int bombRow = (int)(Math.random()*NUM_ROWS);
+        int bombCol = (int)(Math.random()*NUM_COLS);
+        if(!bombs.contains(buttons[bombRow][bombCol]))
+        {
+            bombs.add(buttons[bombRow][bombCol]);
+        }
+    }
+    
     
 }
 
@@ -97,8 +111,8 @@ public class MSButton
     {    
         if (marked)
             fill(0);
-        // else if( clicked && bombs.contains(this) ) 
-        //     fill(255,0,0);
+        else if( clicked && bombs.contains(this) ) 
+            fill(255,0,0);
         else if(clicked)
             fill( 200 );
         else 

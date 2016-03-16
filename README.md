@@ -21,7 +21,7 @@ Program Requirements
 
 Suggested steps to completing this assignment:
 ----------------------------------------------
-1. Fork and clone down this repository
+1. Fork and clone down this repository 
 2. On line 4, create two integer constants `NUM_ROWS` and `NUM_COLS` and initialize them each with the value 20  
 2. Go to line 18, use the constants to initialize the 2d array `buttons` to have 20 rows and 20 columns
 2. Use nested loops to create a `new MSButton` for each row column pair
