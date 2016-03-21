@@ -32,11 +32,6 @@ void setup ()
 public void setBombs()
 {
     //your code
-    //3.Go to line 25 and write the `setBombs()` function. 
-    //   It should generate a random `row` and `col`umn number. Use the `contains()` 
-    //   function to check to see if  `buttons[row][col]` is already in `bombs`. If it isn't then `add` it
-    //3.Uncomment lines 97 and 98 so that cells with a mine turn red when clicked. 
-    //   Test out your program to make sure it has the number of mines you expect.
     while(bombs.size() < 10)
     {
         int bombRow = (int)(Math.random()*NUM_ROWS);
@@ -74,6 +69,19 @@ public void displayWinningMessage()
 
 public class MSButton
 {
+
+    //  Now go to the `MSButton` class and finish these three member methods:  
+    // * `public boolean isValid(int row, int col)` returns `true` if (`row`,`col`) 
+    //    is a valid location on the grid and `false` otherwise
+    // * `public int countBombs(int row, int col)` counts the bombs in the 8 neighbors--
+    //    (remember to check to see if the neighboring button is valid before checking to see if it's a mine)
+    // * `public void mousePressed()` which:
+    //     * sets `click` to true
+    //     * if `keyPressed` is `true`, toggles `marked` to either either `true` or `false`
+    //     * else if `bombs` contains `this` button display the losing message
+    //     * else if `countBombs` returns a number of neighboring mines greater than zero, 
+    //       set the label to that number
+    //     * else recursively call `mousePressed` with the valid, unclicked, neighboring buttons 
     private int r, c;
     private float x,y, width, height;
     private boolean clicked, marked;
@@ -129,6 +137,8 @@ public class MSButton
     public boolean isValid(int r, int c)
     {
         //your code here
+         if(!bombs.contains(buttons[r][c]))
+            return true;
         return false;
     }
     public int countBombs(int row, int col)
