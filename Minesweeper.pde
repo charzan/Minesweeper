@@ -61,6 +61,11 @@ public boolean isWon()
 public void displayLosingMessage()
 {
     //your code here
+    fill(150, 56, 10, 250);
+    System.out.println("got it");
+    textSize(30);
+    stroke(255, 0, 0);
+    text("Game Over", 200, 200);
 }
 public void displayWinningMessage()
 {
@@ -70,11 +75,9 @@ public void displayWinningMessage()
 public class MSButton
 {
 
-    //  Now go to the `MSButton` class and finish these three member methods:  
-    // * `public boolean isValid(int row, int col)` returns `true` if (`row`,`col`) 
-    //    is a valid location on the grid and `false` otherwise
-    // * `public int countBombs(int row, int col)` counts the bombs in the 8 neighbors--
-    //    (remember to check to see if the neighboring button is valid before checking to see if it's a mine)
+
+
+    
     // * `public void mousePressed()` which:
     //     * sets `click` to true
     //     * if `keyPressed` is `true`, toggles `marked` to either either `true` or `false`
@@ -112,6 +115,12 @@ public class MSButton
     public void mousePressed () 
     {
         clicked = true;
+        if(keyPressed)
+            isMarked();
+        else if(bombs.contains(this))
+            displayLosingMessage();
+
+
         //your code here
     }
 
@@ -136,15 +145,35 @@ public class MSButton
     }
     public boolean isValid(int r, int c)
     {
-        //your code here
-         if(!bombs.contains(buttons[r][c]))
+        if(!bombs.contains(buttons[r][c]))
             return true;
         return false;
     }
     public int countBombs(int row, int col)
     {
         int numBombs = 0;
-        //your code here
+        //above clicked
+        if(isValid(row + 1,col - 1) && (bombs.contains(buttons[row + 1][col - 1])))
+            numBombs ++;
+        if(isValid(row + 1,col) && (bombs.contains(buttons[row + 1][col ])))
+            numBombs ++;
+       
+        if(isValid(row + 1,col + 1) && (bombs.contains(buttons[row + 1][col + 1])))
+            numBombs ++;
+         //left and right of clicked
+        if(isValid(row,col - 1) && (bombs.contains(buttons[row][col - 1])))
+            numBombs ++;
+        if(isValid(row,col + 1) && (bombs.contains(buttons[row][col + 1])))
+            numBombs ++;
+        //below clicked
+        if(isValid(row - 1,col - 1) && (bombs.contains(buttons[row - 1][col - 1])))
+            numBombs ++;
+        if(isValid(row - 1,col) && (bombs.contains(buttons[row - 1][col])))
+            numBombs ++;
+        if(isValid(row - 1,col + 1) && (bombs.contains(buttons[row - 1][col + 1])))
+            numBombs ++;
+
+       
         return numBombs;
     }
 }
